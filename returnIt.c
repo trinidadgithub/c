@@ -21,9 +21,13 @@ main()
 
 int larger_of( int a, int b )
 {
+	int save;
+
 	if ( a > b )
-		return a;
+		save = a;
 	else
-		return b;
+		save = b;
+
+	return save;
 }
 
