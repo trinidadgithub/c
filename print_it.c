@@ -11,7 +11,9 @@ main( int argv, char *argc[] )
 	char buffer[256];
 	FILE *fp;
 
-	if( argv < 2 )
+	printf( "Number of arguements: %d\n", argv );
+
+	if( argv < 1 )
 	{
 		fprintf(stderr, "\nProper Usage is: ");
 		fprintf(stderr, "\n\nprint_it filename.ext\n" );
