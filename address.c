@@ -8,11 +8,11 @@ void xprint()
 {
 	char name[256], address[256], city[256], state[256], zipcode[256];
 
-	strcpy( name, "Trinidad Marroquin" );
-	strcpy( address, "3441 Foxbriar Lane" );
-	strcpy( city, "Cibolo" );
-	strcpy( state, "Texas" );
-	strcpy( zipcode, "78108" );
+	strcpy( name, "SomeName" );
+	strcpy( address, "SomeAddress" );
+	strcpy( city, "SomeCity" );
+	strcpy( state, "SomeState" );
+	strcpy( zipcode, "SomeZip" );
 
 	printf( "Name: %s\n", name );
 	printf( "Address: %s\n", address );
