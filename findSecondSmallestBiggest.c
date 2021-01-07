@@ -2,14 +2,19 @@
  * This program determines the second smallest and second biggest in an array */
 #include <stdio.h>
 
-int array[] = { 9, 8, 2, 3, 4, 0 };
-int smallest, biggest, secondSmallest, secondBiggest, temp, i,j, smallest_location, biggest_location;
-int MAX = sizeof( array ) / sizeof( array[0] );
+int array[] = { 19, 18, 12, 13, 14, 10 };	// The array to analyze
+int smallest;					// Smallest value in array
+int biggest;					// Biggest value in array
+int secondSmallest;				// Second smallest value in array
+int secondBiggest;				// Second biggest value in array
+int smallest_location;				// Index of small value in array
+int biggest_location;				// Index of biggest value in array
 
+int MAX = sizeof( array ) / sizeof( array[0] ); // Get the array size
 int find_minimum(int a[], int n);
 int find_maximum(int a[], int n);
-int find_secondSmallest( int a[], int n, int secondSmallest );
-int find_secondLargest( int a[], int n, int secondBiggest );
+int find_secondSmallest( int a[], int n, int secondSmallest, int smallest );
+int find_secondLargest( int a[], int n, int secondBiggest, int biggest );
 
 main()
 {
@@ -20,38 +25,26 @@ main()
 	smallest = array[smallest_location];
 	biggest = array[biggest_location];
 
+	secondSmallest = find_secondSmallest( array, MAX, smallest, smallest ) ;
+	secondBiggest = biggest;
+	
 	printf("\nSmallest value in array is %d: ", smallest );
 	printf("\nBiggest value in array is %d: ", biggest );
-
-	/*secondSmallest = smallest; */
-	secondSmallest = find_secondSmallest( array, MAX, smallest ) ;
-	secondBiggest = biggest;
-
-	/*		
-	for ( i = 0; i < MAX; i++ ) 
-	{ 
-		for ( j = i + 1; j < MAX; j++ ) 
-		{
-			if  ( array[i] < array[j] )
-			{
-			        temp = secondSmallest;
-				secondSmallest = array[i];
-				if ( temp > smallest && secondSmallest > temp ) {
-					secondSmallest = temp;
-				}
-			}
-		}
-	}
-	*/
-	
 	printf("\nSecond Smallest is array is %d: ", secondSmallest );
 
 	return 0;
 
 }
-/* Function: find_secondSmallest */
-int find_secondSmallest(int array[], int MAX, int secondSmallest ) {
-	int i, j, temp;
+/* Function: find_secondSmallest
+ * Create a variable, temp, to temporarily hold the second smallest so we can test it.
+ * When function is called, set smallest and secondsmallest to smallest value in array.
+ * Test to make sure that new array[i] value is not greater than second smallest found.  
+ * If so, restore secondSmallest from temp
+ */
+int find_secondSmallest(int array[], int MAX, int secondSmallest, int smallest ) {
+	
+	int i, j;
+	int temp; // Temporary holder for secondSmallest, keep it safe for testing
 
 	for ( i = 0; i < MAX; i++ )
         {
@@ -59,13 +52,11 @@ int find_secondSmallest(int array[], int MAX, int secondSmallest ) {
                 {
                         if  ( array[i] < array[j] )
                         {
-                                // Hold secondSmallest in a safe place 
-                                temp = secondSmallest;
-                                // Replace value of secondSmallest with next array[i] value 
-                                secondSmallest = array[i];
-                                // Test to make sure that new array[i] is not greater than
-                                // second smallest found.  If so, restore secondSmallest from
-                                // temp 
+                                temp = secondSmallest; 		// Save it.
+                                secondSmallest = array[i];	// Get next value in list
+								// and test to make sure
+								// it's not greater than
+								// second smallest found
                                 if ( temp > smallest && secondSmallest > temp ) {
                                         secondSmallest = temp;
                                 }
@@ -93,16 +84,3 @@ int find_maximum( int a[], int n ) {
 		     index = i;
 	return index;
 }
-	
-
-
-
-        
-
-
-
-	
-
-
-
-
